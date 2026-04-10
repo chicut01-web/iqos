@@ -11,6 +11,8 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        "iqos-teal": "#00D1C1",
+        "iqos-gold": "#C8A96E",
       },
     },
   },
