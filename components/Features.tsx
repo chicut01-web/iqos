@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 const features = [
   {
@@ -54,19 +54,19 @@ const features = [
   },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: {
     transition: { staggerChildren: 0.12 },
   },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 48 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
   },
 };
 
@@ -111,7 +111,7 @@ export default function Features() {
           viewport={{ once: true, amount: 0.15 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/[0.06]"
         >
-          {features.map((feature, i) => (
+          {features.map((feature) => (
             <motion.div
               key={feature.label}
               variants={cardVariants}

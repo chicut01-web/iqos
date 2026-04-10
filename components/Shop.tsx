@@ -9,6 +9,7 @@ const products = [
     name: "IQOS ILUMA One",
     tagline: "Il tuo primo passo",
     price: "49",
+    delay: 0,
     description:
       "Compatto e senza compromessi. La porta d'ingresso all'ecosistema IQOS, con tutta la tecnologia HeatControl™ in un formato essenziale.",
     features: [
@@ -20,7 +21,7 @@ const products = [
     ],
     cta: "Scopri ILUMA One",
     highlight: false,
-    accentColor: "rgba(255,255,255,0.1)",
+    accentColor: "rgba(255,255,255,0.04)",
     borderColor: "rgba(255,255,255,0.1)",
   },
   {
@@ -29,6 +30,7 @@ const products = [
     name: "IQOS ILUMA Prime",
     tagline: "L'esperienza completa",
     price: "119",
+    delay: 0.15,
     description:
       "Il massimo dell'ingegneria IQOS. Finitura premium, LED personalizzabile, cap magnetico. Tecnologia e lusso in un unico oggetto.",
     features: [
@@ -54,13 +56,6 @@ function CheckIcon() {
   );
 }
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i: number) => ({
-    opacity: 1, y: 0,
-    transition: { duration: 0.8, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] },
-  }),
-};
 
 export default function Shop() {
   return (
@@ -86,14 +81,13 @@ export default function Shop() {
 
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
-          {products.map((p, i) => (
+          {products.map((p) => (
             <motion.div
               key={p.id}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              variants={cardVariants}
+              transition={{ duration: 0.8, delay: p.delay, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
               className="relative flex flex-col rounded-2xl overflow-hidden"
               style={{
                 background: p.accentColor,
